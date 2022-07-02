@@ -1,14 +1,16 @@
+use std::process::exit;
+
 use reqwest;
 use serde::{Deserialize, Serialize};
 
 #[derive(Serialize, Deserialize)]
 struct Response {
-    domain: String,
-    port: u16,
-    status_code: u16,
-    response_ip: String,
-    response_code: u16,
-    response_time: f32
+  domain: String,
+  port: u16,
+  status_code: u16,
+  response_ip: String,
+  response_code: u16,
+  response_time: f32
 }
 
 pub fn is_up(domain: String) -> String {
@@ -16,7 +18,9 @@ pub fn is_up(domain: String) -> String {
   let res = result.text().unwrap();
   let v: Response = serde_json::from_str(&res).unwrap();
   if v.status_code == 1 {
-    return format!("{} is up ✔", domain);
+    println!("{}", format!("{} is up ✔", domain));
+    exit(0);
   }
-  return format!("{} is down 𝙓", domain);
+  println!("{}", format!("{} is down 𝙓", domain));
+  exit(2);
 }
