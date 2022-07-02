@@ -1,5 +1,3 @@
-use std::process::exit;
-
 use reqwest;
 use serde::{Deserialize, Serialize};
 
@@ -18,9 +16,7 @@ pub fn is_up(domain: String) -> String {
   let res = result.text().unwrap();
   let v: Response = serde_json::from_str(&res).unwrap();
   if v.status_code == 1 {
-    println!("{}", format!("{} is up ✔", domain));
-    exit(0);
+    return format!("{} is up ✔", domain);
   }
-  println!("{}", format!("{} is down 𝙓", domain));
-  exit(2);
+  return format!("{} is down 𝙓", domain);
 }

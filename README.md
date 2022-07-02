@@ -5,7 +5,7 @@
 ## Install
 
 ```sh
-npm install --global is-up-cli
+cargo run ${domain}
 ```
 
 ## Usage

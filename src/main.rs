@@ -6,8 +6,6 @@ fn main() {
     if domain != None {
         let res: String = is_up(domain.unwrap());
         println!("{}", res);
-        return;
     }
     println!("No domain provided");
-
 }
